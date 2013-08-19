@@ -1,0 +1,25 @@
+<h1>Listing threds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @threds.each do |thred| %>
+      <tr>
+        <td><%= link_to 'Show', thred %></td>
+        <td><%= link_to 'Edit', edit_thred_path(thred) %></td>
+        <td><%= link_to 'Destroy', thred, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thred', new_thred_path %>

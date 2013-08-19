@@ -1,0 +1,17 @@
+<%= form_for(@thred) do |f| %>
+  <% if @thred.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@thred.errors.count, "error") %> prohibited this thred from being saved:</h2>
+
+      <ul>
+      <% @thred.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
