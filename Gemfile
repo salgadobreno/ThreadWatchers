@@ -11,10 +11,15 @@ group :development, :test do
 end
 
 group :test do
+  gem 'minitest'
   gem 'guard-minitest'
   gem 'zeus'
   gem 'turn'
-  gem 'minitest-debugger'
+  #gem 'minitest-debugger'
+  gem 'minitest-rails-capybara'
+  gem 'launchy'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner', '>= 0.8'
 end
 
 # Use SCSS for stylesheets
