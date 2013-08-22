@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @threds.each do |thred| %>
       <tr>
+        <td><%= thred.name %></td>
         <td><%= link_to 'Show', thred %></td>
         <td><%= link_to 'Edit', edit_thred_path(thred) %></td>
         <td><%= link_to 'Destroy', thred, method: :delete, data: { confirm: 'Are you sure?' } %></td>
