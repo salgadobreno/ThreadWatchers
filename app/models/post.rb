@@ -8,4 +8,6 @@ class Post
 
   validates :title, :url, :date, :presence => true
 
+  embedded_in :thred
+
 end

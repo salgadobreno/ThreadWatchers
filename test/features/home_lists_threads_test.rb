@@ -1,9 +1,7 @@
 require "test_helper"
 
-class HomeListsThreadsTest < Capybara::Rails::TestCase
-  def setup
-    DatabaseCleaner[:mongoid].start
-
+feature "Home lists threads" do
+  before do
     @thread = create(:thred)
     @thread2 = create(:thred, :name => "two")
   end
@@ -11,14 +9,19 @@ class HomeListsThreadsTest < Capybara::Rails::TestCase
   # As a visitor
   # I want site's threads displayed to me
   # so I can see which topics interest me
-  def test_homepage_lists_threads
+  it "lists threads" do
     visit root_path
-    save_and_open_page
     assert_content page, @thread.name
     assert_content page, @thread2.name
   end
 
-  def teardown
-    DatabaseCleaner[:mongoid].clean
+  # Given I'm at home page
+  # if I select a thread
+  # I should be redirected to this threads page
+  it "selects thread" do
+    visit root_path
+    click_on @thread.name
+    assert page.find('h1').text, @thread.name
   end
+
 end
