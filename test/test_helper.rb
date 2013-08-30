@@ -9,6 +9,11 @@ require "rails/test_help"
 require "minitest/rails"
 #require "minitest/debugger"
 
+require 'turn/autorun'
+
+Turn.config.ansi = true
+Turn.config.format = :dot
+Turn.config.trace = 10
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
@@ -20,3 +25,13 @@ require "minitest/rails/capybara"
 include FactoryGirl::Syntax::Methods
 
 DatabaseCleaner[:mongoid].strategy = :truncation
+
+class Capybara::Rails::TestCase
+  before :each do
+    DatabaseCleaner[:mongoid].start
+  end
+
+  after :each do
+    DatabaseCleaner[:mongoid].clean
+  end
+end
