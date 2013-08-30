@@ -8,18 +8,21 @@ gem 'mongoid', github: 'mongoid/mongoid'
 gem 'minitest-rails'
 
 group :development, :test do
+  gem 'autotest-standalone'
+  gem 'autotest-rails-pure'
+  gem 'spork-rails', :github => 'sporkrb/spork-rails'
+  gem 'spork-minitest'
 end
 
 group :test do
   gem 'minitest'
-  gem 'guard-minitest'
-  gem 'zeus'
   gem 'turn'
   #gem 'minitest-debugger'
   gem 'minitest-rails-capybara'
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'database_cleaner', '>= 0.8'
+  gem 'ffaker'
 end
 
 # Use SCSS for stylesheets
