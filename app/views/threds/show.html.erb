@@ -3,6 +3,9 @@
   <h1>
     <%= @thred.title %>
   </h1>
+  <div class="description">
+    <%= simple_format @thred.description %>
+  </div>
 </div>
 
 <section>
@@ -70,25 +73,15 @@ eventSource.loadJSON(posts, "");
 </section>
 
 <div class="row">
-  <div class="small-6 columns">
-    <h3>About</h3>
-    <div>
-      <%= simple_format @thred.description %>
-    </div>
-  </div>
-  <div class="small-6 columns">
-    <h2>Entries</h2>
+  <h2>Entries</h2>
 
-    <ul>
-      <% @thred.posts.each do |post| %>
-        <li>
-          <%= post.title %> - <%= link_to post.link %>
-        </li>
-      <% end %>
-    </ul>
-
-  </div>
-
+  <ul>
+    <% @thred.posts.each do |post| %>
+      <li>
+        <%= post.title %> - <%= link_to post.link %>
+      </li>
+    <% end %>
+  </ul>
 
   <p id="notice"><%= notice %></p>
 
