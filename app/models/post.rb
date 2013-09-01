@@ -2,11 +2,13 @@ class Post
   include Mongoid::Document
 
   field :title, type: String
-  field :summary, type: String
-  field :url, type: String
-  field :date, type: DateTime
+  field :description, type: String
+  field :link, type: String
+  field :start, type: DateTime
 
-  validates :title, :url, :date, :presence => true
+  #TODO add image
+
+  validates :title, :link, :start, :presence => true
 
   embedded_in :thred
 

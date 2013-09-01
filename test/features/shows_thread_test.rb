@@ -11,7 +11,7 @@ feature "ShowsThread" do
     visit thred_path @thread
     @thread.posts.each do |p|
       assert_content page, p.title
-      assert_content page, p.url
+      assert_content page, p.link
     end
   end
 end

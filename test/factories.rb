@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :thred do
-    name { Faker::Name.name }
+    title { Faker::Name.name }
 
     factory :thred_with_posts do
       ignore do
@@ -15,7 +15,7 @@ FactoryGirl.define do
 
   factory :post do
     title { "#{Faker::Company.name} #{Faker::Company.bs}" }
-    url { Faker::Internet.http_url }
-    date Date.today
+    link { Faker::Internet.http_url }
+    start Date.today
   end
 end
