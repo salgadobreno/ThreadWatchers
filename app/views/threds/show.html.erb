@@ -1,14 +1,73 @@
 <h1>
-  <%= @thred.name %>
+  <%= @thred.title %>
 </h1>
 
 <section>
-  <h2>Posts</h2>
+  <div id="timeline" style="height:150px; border:1px solid black;"></div>
+
+  <script type="text/javascript" charset="utf-8">
+var posts = <%= raw ActiveModel::ArraySerializer.new(@posts, root: 'events').to_json %>;
+//TODO: extract to helper
+
+Timeline.urlPrefix = "/assets/timeline/";
+
+var d = Timeline.DateTime.parseGregorianDateTime('<%= @current.to_s %>');
+var eventSource = new Timeline.DefaultEventSource(0);
+var theme = Timeline.ClassicTheme.create();
+
+theme.event.bubble.width = 320;
+theme.event.bubble.height = 220;
+theme.ether.backgroundColors[1] = theme.ether.backgroundColors[0];
+
+
+$('#timeline').syrinxTimeline({
+  bands: [
+  {
+      width: "10%",
+      intervalUnit: Timeline.DateTime.YEAR,
+      intervalPixels: 20,
+      date: d,
+      showEventText: false,
+      theme: theme,
+      highlight: false,
+      //decorators: [
+      //    new Timeline.SpanHighlightDecorator({
+      //        startDate: "Nov 14 1840 00:00:00 GMT",
+      //        endDate: "Dec 05 1926 00:00:00 GMT",
+      //        startLabel: "birth",
+      //        endLabel: "death",
+      //        color: "#FFC080",
+      //        opacity: 50,
+      //        theme: theme
+      //    })
+      //],
+      etherPainter: new Timeline.YearCountEtherPainter({
+          startDate: "Nov 14 1840 00:00:00 GMT",
+          multiple: 5,
+          theme: theme
+      })
+  },
+  {
+      width: "90%",
+      intervalUnit: Timeline.DateTime.YEAR,
+      intervalPixels: 200,
+      eventSource: eventSource,
+      date: d,
+      //theme: theme,
+      layout: 'compact'
+  }]
+});
+eventSource.loadJSON(posts, "");
+  </script>
+</section>
+
+<section>
+  <h2>Entries</h2>
 
   <ul>
     <% @thred.posts.each do |post| %>
       <li>
-        <%= post.title %> - <%= link_to post.url %>
+        <%= post.title %> - <%= link_to post.link %>
       </li>
     <% end %>
   </ul>
