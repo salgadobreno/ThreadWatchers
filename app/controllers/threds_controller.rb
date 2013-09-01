@@ -1,28 +1,22 @@
 class ThredsController < ApplicationController
   before_action :set_thred, only: [:show, :edit, :update, :destroy]
 
-  # GET /threds
-  # GET /threds.json
   def index
     @threds = Thred.all
   end
 
-  # GET /threds/1
-  # GET /threds/1.json
   def show
+    @posts = @thred.posts.entries
+    @current = @posts.empty? ? Date.today : @posts.last.start
   end
 
-  # GET /threds/new
   def new
     @thred = Thred.new
   end
 
-  # GET /threds/1/edit
   def edit
   end
 
-  # POST /threds
-  # POST /threds.json
   def create
     @thred = Thred.new(thred_params)
 
@@ -37,8 +31,6 @@ class ThredsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /threds/1
-  # PATCH/PUT /threds/1.json
   def update
     respond_to do |format|
       if @thred.update(thred_params)
@@ -51,8 +43,6 @@ class ThredsController < ApplicationController
     end
   end
 
-  # DELETE /threds/1
-  # DELETE /threds/1.json
   def destroy
     @thred.destroy
     respond_to do |format|
