@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 gem 'mongoid', github: 'mongoid/mongoid'
+gem 'zurb-foundation'
 
 gem 'active_model_serializers'
 
