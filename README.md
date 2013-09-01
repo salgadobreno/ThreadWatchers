@@ -8,6 +8,8 @@ provide the big picture view of the happenings of it. It's also an
 experiment( I don't really know if anyone agrees this has relevancy, what do you think? salgado.breno@gmail.com ) and development excercise :b 
 
 
+![drawing](https://raw.github.com/salgadobreno/ThreadWatchers/master/draw.jpg)
+
 Rationale behind this:
 =====================
 
