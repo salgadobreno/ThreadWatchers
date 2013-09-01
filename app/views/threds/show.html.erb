@@ -1,13 +1,21 @@
-<h1>
-  <%= @thred.title %>
-</h1>
+
+<div class="row">
+  <h1>
+    <%= @thred.title %>
+  </h1>
+</div>
 
 <section>
-  <div id="timeline" style="height:150px; border:1px solid black;"></div>
+  <style type="text/css" media="all">
+    #timeline {
+      font-size:12px;
+    }
+  </style>
+  <div id="timeline" style="height:160px; border:1px solid black;"></div>
 
   <script type="text/javascript" charset="utf-8">
 var posts = <%= raw ActiveModel::ArraySerializer.new(@posts, root: 'events').to_json %>;
-//TODO: extract to helper
+//TODO: extract to helper?
 
 Timeline.urlPrefix = "/assets/timeline/";
 
@@ -61,21 +69,30 @@ eventSource.loadJSON(posts, "");
   </script>
 </section>
 
-<section>
-  <h2>Entries</h2>
+<div class="row">
+  <div class="small-6 columns">
+    <h3>About</h3>
+    <div>
+      <%= simple_format @thred.description %>
+    </div>
+  </div>
+  <div class="small-6 columns">
+    <h2>Entries</h2>
 
-  <ul>
-    <% @thred.posts.each do |post| %>
-      <li>
-        <%= post.title %> - <%= link_to post.link %>
-      </li>
-    <% end %>
-  </ul>
+    <ul>
+      <% @thred.posts.each do |post| %>
+        <li>
+          <%= post.title %> - <%= link_to post.link %>
+        </li>
+      <% end %>
+    </ul>
 
-</section>
+  </div>
 
 
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_thred_path(@thred) %> |
-<%= link_to 'Back', threds_path %>
+  <%= link_to 'Edit', edit_thred_path(@thred) %> |
+  <%= link_to 'Back', threds_path %>
+
+</div>
