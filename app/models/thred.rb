@@ -1,13 +1,13 @@
 class Thred
   include Mongoid::Document
 
-  #field :_id, type: String, default: lambda { name.to_s.parameterize } TODO:
+  #field :_id, type: String, default: lambda { title.to_s.parameterize } TODO:
   #not playing nice with FactoryGirl
-  field :name, type: String
+  field :title, type: String
   field :description, type: String
 
-  validates :name, :presence => true
+  validates :title, :presence => true
 
-  embeds_many :posts
+  embeds_many :posts, order: :start.desc
 
 end
